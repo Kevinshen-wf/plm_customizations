@@ -1,0 +1,110 @@
+{
+  "doctype": "DocType",
+  "name": "BOM Version",
+  "module": "PLM Customizations",
+  "custom": 0,
+  "autoname": "format:{bom}-v{version}",
+  "naming_rule": "Expression",
+  "title_field": "bom",
+  "search_fields": "bom,version,status",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "fields": [
+    {
+      "fieldname": "bom",
+      "label": "BOM",
+      "fieldtype": "Link",
+      "options": "BOM",
+      "reqd": 1,
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "version",
+      "label": "Version",
+      "fieldtype": "Int",
+      "reqd": 1,
+      "in_list_view": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nPublished\nBlocked",
+      "default": "Draft",
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "ecn",
+      "label": "ECN",
+      "fieldtype": "Link",
+      "options": "ECN",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "description": "Engineering Change Note linked to this version"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "published_date",
+      "label": "Published Date",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "published_by",
+      "label": "Published By",
+      "fieldtype": "Link",
+      "options": "User",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_break_snapshot",
+      "label": "Version Snapshot",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "bom_data",
+      "label": "BOM Data (JSON)",
+      "fieldtype": "Long Text",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "notes",
+      "label": "Version Notes",
+      "fieldtype": "Text"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    },
+    {
+      "role": "Manufacturing Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    },
+    {
+      "role": "Manufacturing User",
+      "read": 1
+    },
+    {
+      "role": "Mechanical Engineer",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    }
+  ],
+  "track_changes": 1,
+  "engine": "InnoDB"
+}

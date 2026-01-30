@@ -1,0 +1,125 @@
+[
+  {
+    "doctype": "Custom Field",
+    "name": "Item-item_code_section",
+    "dt": "Item",
+    "fieldname": "item_code_section",
+    "label": "",
+    "fieldtype": "Section Break",
+    "insert_after": "naming_series",
+    "collapsible": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Item-use_auto_naming",
+    "dt": "Item",
+    "fieldname": "use_auto_naming",
+    "label": "Auto Generate Item Code",
+    "fieldtype": "Check",
+    "insert_after": "item_code_section",
+    "default": "0",
+    "description": "Check to auto-generate item code based on category"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Item-category1",
+    "dt": "Item",
+    "fieldname": "category1",
+    "label": "Category 1 (Type)",
+    "fieldtype": "Select",
+    "options": "\nE - Electrical/Electronic\nM - Mechanical\nP - Packaging/Panel\nC - Consumable\nS - Software/Specification",
+    "insert_after": "use_auto_naming",
+    "depends_on": "eval:doc.use_auto_naming",
+    "mandatory_depends_on": "eval:doc.use_auto_naming"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Item-category2",
+    "dt": "Item",
+    "fieldname": "category2",
+    "label": "Category 2 (Sub-type)",
+    "fieldtype": "Select",
+    "options": "\nSTD - Standard Part\nCAT - Purchased Part\nCUS - Custom Part\nASM - Assembly",
+    "insert_after": "category1",
+    "depends_on": "eval:doc.use_auto_naming",
+    "mandatory_depends_on": "eval:doc.use_auto_naming"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Item-generated_code_preview",
+    "dt": "Item",
+    "fieldname": "generated_code_preview",
+    "label": "Generated Code Preview",
+    "fieldtype": "Data",
+    "insert_after": "category2",
+    "read_only": 1,
+    "depends_on": "eval:doc.use_auto_naming"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Item-plm_version_section",
+    "dt": "Item",
+    "fieldname": "plm_version_section",
+    "label": "Version Control",
+    "fieldtype": "Section Break",
+    "insert_after": "item_name",
+    "collapsible": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Item-current_version",
+    "dt": "Item",
+    "fieldname": "current_version",
+    "label": "Current Version",
+    "fieldtype": "Int",
+    "insert_after": "plm_version_section",
+    "default": "0",
+    "read_only": 1,
+    "bold": 1,
+    "in_list_view": 1,
+    "in_standard_filter": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Item-plm_status",
+    "dt": "Item",
+    "fieldname": "plm_status",
+    "label": "PLM Status",
+    "fieldtype": "Select",
+    "options": "Draft\nPublished\nBlocked",
+    "insert_after": "current_version",
+    "default": "Draft",
+    "read_only": 1,
+    "in_list_view": 1,
+    "in_standard_filter": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Item-column_break_plm",
+    "dt": "Item",
+    "fieldname": "column_break_plm",
+    "fieldtype": "Column Break",
+    "insert_after": "plm_status"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Item-published_date",
+    "dt": "Item",
+    "fieldname": "published_date",
+    "label": "Published Date",
+    "fieldtype": "Datetime",
+    "insert_after": "column_break_plm",
+    "read_only": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Item-published_by",
+    "dt": "Item",
+    "fieldname": "published_by",
+    "label": "Published By",
+    "fieldtype": "Link",
+    "options": "User",
+    "insert_after": "published_date",
+    "read_only": 1
+  }
+]

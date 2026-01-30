@@ -1,0 +1,94 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-01-23 17:16:01.341719",
+ "custom": 1,
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "item_drawing_link_section",
+  "link",
+  "version",
+  "type",
+  "attachment",
+  "filename"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_drawing_link_section",
+   "fieldtype": "Section Break",
+   "label": "Item Drawing Link"
+  },
+  {
+   "fieldname": "link",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Link",
+   "options": "Document"
+  },
+  {
+   "fetch_from": "link.description",
+   "fetch_if_empty": 1,
+   "fieldname": "version",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Description",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "link.type",
+   "fetch_if_empty": 1,
+   "fieldname": "type",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "link.attachment",
+   "fetch_if_empty": 1,
+   "fieldname": "attachment",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Attachment",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "link.filename",
+   "fetch_if_empty": 1,
+   "fieldname": "filename",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Filename",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-01-28 15:44:35.173972",
+ "modified_by": "Administrator",
+ "module": "PLM Customizations",
+ "name": "Item Drawing Link",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

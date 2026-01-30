@@ -1,0 +1,104 @@
+{
+  "doctype": "DocType",
+  "name": "Item Version",
+  "module": "PLM Customizations",
+  "custom": 0,
+  "autoname": "format:{item_code}-v{version}",
+  "naming_rule": "Expression",
+  "title_field": "item_code",
+  "search_fields": "item_code,version,status",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "fields": [
+    {
+      "fieldname": "item_code",
+      "label": "Item Code",
+      "fieldtype": "Link",
+      "options": "Item",
+      "reqd": 1,
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "version",
+      "label": "Version",
+      "fieldtype": "Int",
+      "reqd": 1,
+      "in_list_view": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nPublished\nBlocked",
+      "default": "Draft",
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "ecn",
+      "label": "ECN",
+      "fieldtype": "Link",
+      "options": "ECN",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "description": "Engineering Change Note linked to this version"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "published_date",
+      "label": "Published Date",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "published_by",
+      "label": "Published By",
+      "fieldtype": "Link",
+      "options": "User",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_break_snapshot",
+      "label": "Version Snapshot",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "item_data",
+      "label": "Item Data (JSON)",
+      "fieldtype": "Long Text",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "notes",
+      "label": "Version Notes",
+      "fieldtype": "Text"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    },
+    {
+      "role": "Item Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    },
+    {
+      "role": "Stock User",
+      "read": 1
+    }
+  ],
+  "track_changes": 1,
+  "engine": "InnoDB"
+}

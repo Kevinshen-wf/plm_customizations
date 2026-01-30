@@ -1,0 +1,112 @@
+{
+  "doctype": "DocType",
+  "name": "ECN",
+  "module": "PLM Customizations",
+  "custom": 0,
+  "autoname": "naming_series:",
+  "naming_rule": "By \"Naming Series\" field",
+  "title_field": "title",
+  "search_fields": "title,author",
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "label": "Series",
+      "fieldtype": "Select",
+      "options": "ECN.######",
+      "default": "ECN.######",
+      "reqd": 1,
+      "hidden": 1,
+      "no_copy": 1,
+      "print_hide": 1
+    },
+    {
+      "fieldname": "title",
+      "label": "Title",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1,
+      "bold": 1
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "author",
+      "label": "Author",
+      "fieldtype": "Link",
+      "options": "User",
+      "read_only": 1,
+      "in_list_view": 1,
+      "bold": 1
+    },
+    {
+      "fieldname": "creation_date",
+      "label": "Creation Date",
+      "fieldtype": "Datetime",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "section_break_details",
+      "label": "Change Details",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "change_reason",
+      "label": "Change Reason",
+      "fieldtype": "Text",
+      "reqd": 1,
+      "description": "Describe the reason for this engineering change"
+    },
+    {
+      "fieldname": "section_break_links",
+      "label": "Linked Versions",
+      "fieldtype": "Section Break",
+      "collapsible": 1
+    },
+    {
+      "fieldname": "linked_item_versions_html",
+      "label": "Linked Item Versions",
+      "fieldtype": "HTML",
+      "options": "<div id='linked-item-versions'></div>"
+    },
+    {
+      "fieldname": "linked_bom_versions_html",
+      "label": "Linked BOM Versions",
+      "fieldtype": "HTML",
+      "options": "<div id='linked-bom-versions'></div>"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    },
+    {
+      "role": "Item Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    },
+    {
+      "role": "Mechanical Engineer",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    },
+    {
+      "role": "Manufacturing Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    }
+  ],
+  "track_changes": 1,
+  "engine": "InnoDB"
+}

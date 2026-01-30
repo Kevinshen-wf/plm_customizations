@@ -1,0 +1,121 @@
+.order-gantt-container {
+    padding: 15px;
+}
+
+.gantt-legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.gantt-chart-wrapper {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--card-bg);
+    overflow-x: auto;
+}
+
+/* Order type checkboxes */
+.order-type-checkboxes {
+    padding-top: 8px;
+}
+
+.order-type-checkboxes label {
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/* Filter section */
+.gantt-filters .form-group {
+    margin-bottom: 10px;
+}
+
+.gantt-filters label {
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* Table styling */
+.order-gantt-table {
+    margin: 0;
+    font-size: 13px;
+}
+
+.order-gantt-table th {
+    background: var(--bg-color);
+    font-weight: 600;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.order-gantt-table td {
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.order-gantt-table .badge {
+    font-size: 11px;
+    padding: 4px 8px;
+}
+
+.order-gantt-table .badge-info {
+    background-color: var(--cyan-500);
+}
+
+.order-gantt-table .badge-primary {
+    background-color: var(--blue-500);
+}
+
+.order-gantt-table .badge-secondary {
+    background-color: var(--gray-500);
+}
+
+.order-gantt-table .progress {
+    background-color: var(--gray-200);
+    border-radius: 4px;
+}
+
+.order-gantt-table .progress-bar {
+    font-size: 11px;
+    line-height: 20px;
+}
+
+/* Row colors */
+.order-gantt-table .table-danger {
+    background-color: rgba(220, 53, 69, 0.1) !important;
+}
+
+.order-gantt-table .table-warning {
+    background-color: rgba(255, 193, 7, 0.15) !important;
+}
+
+.order-gantt-table .table-success {
+    background-color: rgba(40, 167, 69, 0.1) !important;
+}
+
+/* Delay text colors */
+.order-gantt-table .text-danger {
+    color: var(--red-600) !important;
+    font-weight: 600;
+}
+
+.order-gantt-table .text-success {
+    color: var(--green-600) !important;
+}

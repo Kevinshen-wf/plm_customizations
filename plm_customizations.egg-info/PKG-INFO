@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: plm_customizations
+Version: 0.0.1
+Summary: PLM Customizations for ERPNext
+Author: Your Company
+Author-email: your@email.com
+Dynamic: author
+Dynamic: author-email
+Dynamic: summary

@@ -75,6 +75,13 @@
       "hidden": 1
     },
     {
+      "fieldname": "document_snapshot",
+      "label": "Document Snapshot (JSON)",
+      "fieldtype": "Long Text",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
       "fieldname": "notes",
       "label": "Version Notes",
       "fieldtype": "Text"

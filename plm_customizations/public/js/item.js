@@ -36,6 +36,14 @@ frappe.ui.form.on('Item', {
         
         // Also override Ctrl+S keyboard shortcut
         override_keyboard_save(frm);
+        
+        // Safety: reset plm_save_in_progress after 30 seconds to prevent stuck state
+        setTimeout(function() {
+            if (frm.plm_save_in_progress) {
+                console.warn('PLM: Resetting stuck plm_save_in_progress flag');
+                frm.plm_save_in_progress = false;
+            }
+        }, 30000);
     },
     
     before_save: function(frm) {
@@ -43,11 +51,11 @@ frappe.ui.form.on('Item', {
         if (frm.is_new()) return;
         
         // If we're in a PLM save action, allow save to proceed
-        if (frm.plm_save_in_progress) {
+        if (frm.plm_save_in_progress === true) {
             return;
         }
         
-        // Otherwise, cancel save and show dialog
+        // ALWAYS block the save for existing items without going through dialog
         frappe.validated = false;
         
         // Reset dialog flag if it was stuck
@@ -55,10 +63,18 @@ frappe.ui.form.on('Item', {
             frm.plm_dialog_open = false;
         }
         
+        // Show error message to guide user
+        frappe.show_alert({
+            message: __('Please use the Save button to save with version control'),
+            indicator: 'orange'
+        }, 3);
+        
         // Use setTimeout to avoid blocking the save process
         setTimeout(function() {
             show_save_action_dialog(frm);
         }, 100);
+        
+        return false;  // Extra safeguard to block save
     },
     
     use_auto_naming: function(frm) {
@@ -247,6 +263,16 @@ function get_draft_label(current_status, current_version) {
 }
 
 function execute_save_action(frm, action, notes, ecn) {
+    // Validate ECN is provided
+    if (!ecn) {
+        frappe.msgprint({
+            title: __('Validation Error'),
+            message: __('ECN is required to save changes'),
+            indicator: 'red'
+        });
+        return;
+    }
+    
     // Set flag to allow save to proceed
     frm.plm_save_in_progress = true;
     
@@ -293,12 +319,19 @@ function execute_save_action(frm, action, notes, ecn) {
                     });
                 }
             },
-            error: function() {
+            error: function(err) {
                 frm.plm_save_in_progress = false;
+                console.error('PLM save error:', err);
+                frappe.msgprint({
+                    title: __('Error'),
+                    message: __('Failed to save. Please try again.'),
+                    indicator: 'red'
+                });
             }
         });
-    }).catch(() => {
+    }).catch((err) => {
         frm.plm_save_in_progress = false;
+        console.error('PLM document save error:', err);
     });
 }
 

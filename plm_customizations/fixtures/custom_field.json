@@ -121,5 +121,98 @@
     "options": "User",
     "insert_after": "published_date",
     "read_only": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Item-current_ecn",
+    "dt": "Item",
+    "fieldname": "current_ecn",
+    "label": "Current ECN",
+    "fieldtype": "Link",
+    "options": "ECN",
+    "insert_after": "published_by",
+    "read_only": 1,
+    "in_list_view": 1,
+    "in_standard_filter": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "BOM-plm_version_section",
+    "dt": "BOM",
+    "fieldname": "plm_version_section",
+    "label": "Version Control",
+    "fieldtype": "Section Break",
+    "insert_after": "item_name",
+    "collapsible": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "BOM-current_version",
+    "dt": "BOM",
+    "fieldname": "current_version",
+    "label": "Current Version",
+    "fieldtype": "Int",
+    "insert_after": "plm_version_section",
+    "default": "0",
+    "read_only": 1,
+    "bold": 1,
+    "in_list_view": 1,
+    "in_standard_filter": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "BOM-plm_status",
+    "dt": "BOM",
+    "fieldname": "plm_status",
+    "label": "PLM Status",
+    "fieldtype": "Select",
+    "options": "Draft\nPublished\nBlocked",
+    "insert_after": "current_version",
+    "default": "Draft",
+    "read_only": 1,
+    "in_list_view": 1,
+    "in_standard_filter": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "BOM-current_ecn",
+    "dt": "BOM",
+    "fieldname": "current_ecn",
+    "label": "Current ECN",
+    "fieldtype": "Link",
+    "options": "ECN",
+    "insert_after": "plm_status",
+    "read_only": 1,
+    "in_list_view": 1,
+    "in_standard_filter": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "BOM-column_break_plm",
+    "dt": "BOM",
+    "fieldname": "column_break_plm",
+    "fieldtype": "Column Break",
+    "insert_after": "current_ecn"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "BOM-bom_published_date",
+    "dt": "BOM",
+    "fieldname": "bom_published_date",
+    "label": "Published Date",
+    "fieldtype": "Datetime",
+    "insert_after": "column_break_plm",
+    "read_only": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "BOM-bom_published_by",
+    "dt": "BOM",
+    "fieldname": "bom_published_by",
+    "label": "Published By",
+    "fieldtype": "Link",
+    "options": "User",
+    "insert_after": "bom_published_date",
+    "read_only": 1
   }
 ]

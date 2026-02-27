@@ -23,7 +23,18 @@ frappe.ui.form.on('Item', {
     
     refresh: function(frm) {
         setup_auto_naming(frm);
-        
+
+        // Hide the auto-generated 'name' column in Item Drawing Link edit dialog
+        if (frm.fields_dict['custom_document_list']) {
+            frm.fields_dict['custom_document_list'].grid.df.cannot_add_rows = false;
+            let grid = frm.fields_dict['custom_document_list'].grid;
+            if (grid.meta && grid.meta.fields) {
+                grid.meta.fields.forEach(function(f) {
+                    if (f.fieldname === 'name') f.hidden = 1;
+                });
+            }
+        }
+
         if (frm.is_new()) return;
         
         // Reset ALL flags on refresh to ensure clean state

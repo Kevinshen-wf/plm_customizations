@@ -1,3 +1,10 @@
+frappe.ui.form.on('Item Drawing Link', {
+    link: function(frm, cdt, cdn) {
+        // When a Document is selected in the child table, filter must match item
+        // No additional action needed here; fetch_from handles field population
+    }
+});
+
 frappe.ui.form.on('Item', {
     setup: function(frm) {
         frm.save_action = null;
@@ -5,7 +12,6 @@ frappe.ui.form.on('Item', {
         frm.plm_save_in_progress = false;
         frm.plm_dialog_open = false;
         
-        // Format attachment field to show only filename
         frm.set_query('link', 'custom_document_list', function() {
             return {
                 filters: {

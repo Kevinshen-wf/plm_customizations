@@ -24,3 +24,37 @@ def _patch_form_meta_for_custom_doctype_js():
 
 
 _patch_form_meta_for_custom_doctype_js()
+
+
+def _patch_csv_utf8_bom():
+    """Add UTF-8 BOM to CSV exports so Excel correctly recognizes Chinese characters."""
+    import codecs
+    import frappe.desk.utils as desk_utils
+    import frappe.utils.response as response_mod
+
+    if getattr(desk_utils, "_plm_csv_bom_patched", False):
+        return
+
+    _original_get_csv_bytes = desk_utils.get_csv_bytes
+
+    def get_csv_bytes_with_bom(data, csv_params):
+        return codecs.BOM_UTF8 + _original_get_csv_bytes(data, csv_params)
+
+    desk_utils.get_csv_bytes = get_csv_bytes_with_bom
+
+    _original_as_csv = response_mod.as_csv
+
+    def as_csv_with_bom():
+        resp = _original_as_csv()
+        if resp.data and not resp.data.startswith(codecs.BOM_UTF8):
+            if isinstance(resp.data, str):
+                resp.data = codecs.BOM_UTF8 + resp.data.encode("utf-8")
+            else:
+                resp.data = codecs.BOM_UTF8 + resp.data
+        return resp
+
+    response_mod.as_csv = as_csv_with_bom
+    desk_utils._plm_csv_bom_patched = True
+
+
+_patch_csv_utf8_bom()

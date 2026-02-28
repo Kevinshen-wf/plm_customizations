@@ -16,6 +16,7 @@ after_migrate = "plm_customizations.setup.after_install"
 
 doc_events = {
     "Document": {
+        "after_insert": "plm_customizations.api.document_events.after_insert_document",
         "before_cancel": "plm_customizations.api.document_events.before_cancel_document",
         "on_cancel": "plm_customizations.api.document_events.on_cancel_document",
         "validate": "plm_customizations.api.document_events.validate_document"
@@ -50,6 +51,9 @@ fixtures = [
     {
         "dt": "Custom DocPerm",
         "filters": [["role", "=", "Mechanical Engineer"]]
+    },
+    {
+        "dt": "Document Naming Rule"
     }
 ]
 

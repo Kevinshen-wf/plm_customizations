@@ -23,6 +23,26 @@ def validate_document(doc, method):
         doc.filename = os.path.basename(doc.attachment)
 
 
+def after_insert_document(doc, method):
+    """
+    After inserting a Document, automatically add it to the linked Item's
+    custom_document_list child table (Item Drawing Link) if the item field is set.
+    """
+    if not doc.item:
+        return
+
+    item_doc = frappe.get_doc("Item", doc.item)
+
+    # Check if already linked to avoid duplicates
+    already_linked = any(row.link == doc.name for row in (item_doc.custom_document_list or []))
+    if already_linked:
+        return
+
+    item_doc.append("custom_document_list", {"link": doc.name})
+    item_doc.save(ignore_permissions=True)
+    frappe.db.commit()
+
+
 def before_cancel_document(doc, method):
     """
     Before cancelling a Document, set flag to ignore linked documents check.

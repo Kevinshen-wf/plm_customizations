@@ -1,7 +1,6 @@
 frappe.ui.form.on('Item Drawing Link', {
     link: function(frm, cdt, cdn) {
-        // When a Document is selected in the child table, filter must match item
-        // No additional action needed here; fetch_from handles field population
+        // fetch_from handles field population automatically
     }
 });
 

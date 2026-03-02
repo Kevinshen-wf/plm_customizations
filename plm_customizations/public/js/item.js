@@ -13,23 +13,38 @@ frappe.ui.form.on('Item', {
         
         frm.set_query('link', 'custom_document_list', function() {
             return {
-                filters: {
-                    'docstatus': 1
-                }
+                query: 'plm_customizations.api.document_events.get_submitted_documents'
             };
         });
+
+        if (frm.is_new() && !frm.doc.use_auto_naming) {
+            frm.set_value('use_auto_naming', 1);
+        }
     },
     
     refresh: function(frm) {
         setup_auto_naming(frm);
 
-        // Hide the auto-generated 'name' column in Item Drawing Link edit dialog
         if (frm.fields_dict['custom_document_list']) {
             frm.fields_dict['custom_document_list'].grid.df.cannot_add_rows = false;
             let grid = frm.fields_dict['custom_document_list'].grid;
             if (grid.meta && grid.meta.fields) {
                 grid.meta.fields.forEach(function(f) {
                     if (f.fieldname === 'name') f.hidden = 1;
+                });
+            }
+
+            if (!frm.is_new()) {
+                grid.wrapper.find('.custom-new-doc-top').remove();
+                let $btn = $(`<div class="custom-new-doc-top" style="margin-bottom: 8px;">
+                    <button class="btn btn-xs btn-default">
+                        <svg class="icon icon-sm"><use href="#icon-add"></use></svg>
+                        ${__('New Document')}
+                    </button>
+                </div>`);
+                grid.wrapper.prepend($btn);
+                $btn.find('button').on('click', function() {
+                    frappe.new_doc('Document', { item: frm.doc.name });
                 });
             }
         }

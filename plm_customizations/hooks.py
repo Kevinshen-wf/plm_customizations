@@ -77,16 +77,6 @@ doctype_list_js = {
     "BOM": "public/js/bom_list.js"
 }
 
-# Whitelisted Methods
-# -------------------
-# Methods that can be called from the client side
-
-# override_whitelisted_methods = {
-# }
-
-# Jinja Environment
-# -----------------
-# jinja = {
-#     "methods": [],
-#     "filters": []
-# }
+standard_queries = {
+    "Item": "plm_customizations.api.document_events.item_query"
+}
